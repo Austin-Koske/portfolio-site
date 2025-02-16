@@ -15,8 +15,31 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Your Name - Portfolio",
-  description: "Personal portfolio showcasing my work and experience",
+  title: "Austin Koske",
+  description: "Welcome to my portfolio!",
+  metadataBase: new URL('https://austinkoske.com'),
+  openGraph: {
+    title: 'Austin Koske',
+    description: 'Welcome to my portfolio!',
+    url: 'https://austinkoske.com',
+    siteName: 'Austin Koske',
+    images: [
+      {
+        url: '/avatar.jpg',  // Replace with your actual image path
+        width: 1200,
+        height: 630,
+        alt: 'Austin Koske - Portfolio',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Austin Koske',
+    description: 'Welcome to my portfolio!',
+    images: ['/avatar.jpg'], // Replace with your actual image path
+  },
 };
 
 export default function RootLayout({
