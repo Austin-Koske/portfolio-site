@@ -1,45 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { DarkModeProvider } from "./utils/DarkModeContext";
+import DarkModeToggle from "./components/DarkModeToggle";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  display: "swap",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Austin Koske",
-  description: "Welcome to my portfolio!",
-  metadataBase: new URL('https://austinkoske.com'),
-  openGraph: {
-    title: 'Austin Koske',
-    description: 'Welcome to my portfolio!',
-    url: 'https://austinkoske.com',
-    siteName: 'Austin Koske',
-    images: [
-      {
-        url: '/avatar.jpg',  // Replace with your actual image path
-        width: 1200,
-        height: 630,
-        alt: 'Austin Koske - Portfolio',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Austin Koske',
-    description: 'Welcome to my portfolio!',
-    images: ['/avatar.jpg'], // Replace with your actual image path
-  },
+  title: "Austin Koske - Portfolio",
+  description: "Austin Koske's Portfolio - Software Engineer and Computer Science Student",
 };
 
 export default function RootLayout({
@@ -48,9 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${outfit.variable} antialiased bg-white`}>
-        {children}
+    <html lang="en" className="transition-colors" suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen transition-colors`}>
+        <DarkModeProvider>
+          <DarkModeToggle />
+          <main className="bg-white dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100">
+            {children}
+          </main>
+        </DarkModeProvider>
       </body>
     </html>
   );

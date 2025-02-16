@@ -14,16 +14,16 @@ interface NavButtonProps {
 const NavButton: React.FC<NavButtonProps> = ({ href, children, isActive }) => (
   <Link
     href={href}
-    className={`px-4 py-2 rounded-full text-center text-sm font-medium relative transition-all duration-300
+    className={`px-4 py-2 rounded-full text-center text-sm font-medium relative transition-all duration-150
       ${isActive 
-        ? "text-primary-700 bg-primary-50 font-semibold" 
-        : "text-gray-600 hover:text-primary-600 hover:bg-primary-50"} 
+        ? "text-primary-700 dark:text-primary-300 bg-primary-50 dark:bg-primary-900/20 font-semibold" 
+        : "text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20"} 
       focus-visible:outline focus-visible:outline-primary-400
       active:scale-95 hover:-translate-y-0.5 transform`}
   >
     {children}
     <span
-      className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4/5 h-0.5 bg-primary-500 transition-transform duration-300 ${
+      className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4/5 h-0.5 bg-primary-500 transition-transform duration-150 ${
         isActive ? "scale-x-100" : "scale-x-0"
       }`}
     />
@@ -50,11 +50,11 @@ const NavBar: React.FC = () => {
 
   return (
     <div>
-      <nav className="bg-white/80 backdrop-blur-md fixed top-0 left-0 w-full shadow-sm py-4 z-50 border-b border-gray-100">
+      <nav className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md fixed top-0 left-0 w-full shadow-sm dark:shadow-gray-800/20 py-4 z-50 border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-screen-xl mx-auto px-6 flex items-center justify-between">
           <Link
             href={currentPath !== "/" ? "/" : "#header-section"}
-            className="flex items-center gap-3 text-gray-900 no-underline group"
+            className="flex items-center gap-3 text-gray-900 dark:text-white no-underline group"
           >
             <span className="font-outfit font-semibold text-lg">Austin Koske</span>
           </Link>
