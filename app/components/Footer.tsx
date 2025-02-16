@@ -4,12 +4,12 @@ import { data } from "@/app/utils/data";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 dark:bg-black text-white py-12">
       <div className="max-w-screen-xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">{data.footer.name}</h3>
-            <p className="text-gray-400 italic">{data.footer.text}</p>
+            <p className="text-gray-400 dark:text-gray-500 italic">{data.footer.text}</p>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4">Connect</h3>
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
                   href={connection.link} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-400 dark:text-gray-500 hover:text-white dark:hover:text-gray-300 transition-colors"
                 >
                   {connection.name === "GitHub" && (
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
                 <a 
                   key={navItem.name}
                   href={navItem.link}
-                  className="block text-gray-400 hover:text-white transition-colors"
+                  className="block text-gray-400 dark:text-gray-500 hover:text-white dark:hover:text-gray-300 transition-colors"
                 >
                   {navItem.name}
                 </a>
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+        <div className="mt-8 pt-8 border-t border-gray-800 dark:border-gray-700 text-center text-gray-400 dark:text-gray-500">
           <p>&copy; {new Date().getFullYear()} Austin Koske. All rights reserved.</p>
         </div>
       </div>
