@@ -6,7 +6,7 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
+# Install dependencies
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
@@ -24,7 +24,18 @@ COPY . .
 # Disable telemetry during the build
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Build the application
+# 🛑 Force Next.js to Ignore `.env` Files
+ARG NEXT_PUBLIC_URL=https://austinkoske.com
+ARG TURNSTILE_SITE_KEY=1x00000000000000000000AA
+
+# Inject Build Arguments as Environment Variables
+ENV NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}
+ENV TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
+
+# Delete `.env` files to prevent conflicts
+RUN rm -f .env .env.local .env.production .env.development
+
+# Build the application using only Build Args
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
@@ -32,13 +43,12 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-# Production image, copy all the files and run next
+# Production image, copy all the files and run Next.js
 FROM base AS runner
 WORKDIR /app
 
 # Disable telemetry during runtime
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV NODE_ENV=production
 
 RUN \
   addgroup --system --gid 1001 nodejs; \
@@ -51,7 +61,6 @@ RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
 # Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
@@ -60,8 +69,5 @@ USER nextjs
 # Expose port 3000
 EXPOSE 3000
 
-# Set hostname to localhost
-ENV HOSTNAME="0.0.0.0"
-
-# server.js is created by next build from the standalone output
-CMD ["node", "server.js"] 
+# Start Next.js
+CMD ["node", "server.js"]

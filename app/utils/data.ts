@@ -62,7 +62,12 @@ export const data = {
     hero_text: [
         "Developer", 2000, "",
         "Creator", 2000, "",
-        "Designer", 2000, ""
+        "Designer", 2000, "",
+        "Computer Scientist", 2000, "",
+        "Student", 2000, "",
+        "Data Scientist", 2000, "",
+        "Software Engineer", 2000, "",
+        "Full Stack Developer", 2000, "",
     ],
     certifications: [
         {

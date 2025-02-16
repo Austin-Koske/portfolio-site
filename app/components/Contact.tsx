@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { Turnstile } from '@marsidev/react-turnstile'
 
+console.log(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY)
+
 const Contact: React.FC = () => {
   const [showContact, setShowContact] = useState(false);
 
@@ -16,7 +18,7 @@ const Contact: React.FC = () => {
           {!showContact ? (
             <div className="flex justify-center">
               <Turnstile
-                siteKey={process.env.NODE_ENV === 'development' ? '1x00000000000000000000AA' : process.env.TURNSTILE_SITE_KEY || ''}
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
                 onSuccess={() => setShowContact(true)}
               />
             </div>
