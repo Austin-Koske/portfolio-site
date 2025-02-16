@@ -25,12 +25,11 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # 🛑 Force Next.js to Ignore `.env` Files
-ARG NEXT_PUBLIC_URL=https://austinkoske.com
-ARG TURNSTILE_SITE_KEY=1x00000000000000000000AA
+
+ARG NEXT_PUBLIC_NODE_ENV=development
 
 # Inject Build Arguments as Environment Variables
-ENV NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}
-ENV TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
+ENV NEXT_PUBLIC_NODE_ENV=${NEXT_PUBLIC_NODE_ENV}
 
 # Delete `.env` files to prevent conflicts
 RUN rm -f .env .env.local .env.production .env.development

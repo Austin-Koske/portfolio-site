@@ -1,6 +1,7 @@
 import React from "react";
 import { BriefcaseIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
 import { data } from "@/app/utils/data";
+import Image from "next/image";
 
 const Experience: React.FC = () => {
   return (
@@ -11,11 +12,26 @@ const Experience: React.FC = () => {
           <div className="absolute left-0 md:left-1/2 transform -translate-x-px h-full w-0.5 bg-gray-200" />          
           <div className="space-y-12">
             {data.experience.map((exp, index) => (
-              <div key={index} className={`relative flex flex-col md:flex-row items-center md:justify-between 
-                ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+              <div key={index} className={`relative flex flex-col md:flex-row items-center md:justify-between`}>
                 <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-primary-500" />
                 
-                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pl-8' : 'md:pr-8'}`}>
+                {/* Image Section */}
+                {exp.image && (
+                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-8 order-2' : 'md:pl-8 order-1'}`}>
+                    <div className="relative aspect-square w-48 mx-auto rounded-lg overflow-hidden">
+                      <Image
+                        src={exp.image}
+                        alt={`${exp.organization} - ${exp.title}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 192px"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Content Section */}
+                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pl-8 order-1' : 'md:pr-8 order-2'} ${!exp.image ? 'md:ml-auto' : ''}`}>
                   <div className="bg-white p-6 rounded-lg shadow-lg">
                     <div className="flex items-center gap-2 mb-2">
                       {exp.type === "work" ? (

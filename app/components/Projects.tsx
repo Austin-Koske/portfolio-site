@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
           {data.projects.map((project, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2"
+              className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 flex flex-col h-full"
             >
               <div className="relative h-48 sm:h-56 lg:h-64">
                 <Image
@@ -22,7 +22,7 @@ const Projects: React.FC = () => {
                   className="object-cover"
                 />
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
                 <h4 className="text-gray-600 mb-4">{project.timeline}</h4>
                 <p className="text-gray-600 mb-4 line-clamp-8">{project.description}</p>
@@ -36,14 +36,16 @@ const Projects: React.FC = () => {
                     </span>
                   ))}
                 </div>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block w-full text-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-                >
-                  View Project
-                </a>
+                <div className="mt-auto">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block w-full text-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+                  >
+                    View Project
+                  </a>
+                </div>
               </div>
             </div>
           ))}
