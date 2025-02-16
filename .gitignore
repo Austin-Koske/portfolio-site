@@ -41,4 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 # docker
-docker-stuff/
+docker-stuff/build-prod
+docker-stuff/build-test
