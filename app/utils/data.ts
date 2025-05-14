@@ -29,10 +29,22 @@ export const data = {
             image: "/experiences/freelance.png"
         },
         {
+            title: "Data Science Intern",
+            organization: "Direct Supply",
+            location: "Milwaukee, WI",
+            period: "March 2025 - Present",
+            description: [
+                "Developed data pipelines, statistical models, and dashboards to support healthcare technology initiatives and business insights",
+                "Collaborated with agile teams to build and maintain machine learning tools and cloud-based analytics solutions"
+            ],
+            type: "work",
+            image: "/experiences/directsupply.png"
+        },        
+        {
             title: "Computer Science, B.S.",
             organization: "Milwaukee School of Engineering",
             location: "Milwaukee, WI",
-            period: "2021 - 2025",
+            period: "2024 - 2028",
             description: [
                 "GPA: 3.47",
                 "Relevant Coursework: Software Development,Data Structures, Design and Cloud Patterns, Calculus I & II, Discrete Mathematics",
@@ -40,7 +52,7 @@ export const data = {
             ],
             type: "education",
             image: "/experiences/msoe.png"
-        },
+        }
     ],
     projects: [
         {
