@@ -8,7 +8,7 @@ set -e
 # Configuration
 IMAGE_NAME="portfolio-site"
 REGISTRY="docker.io"  # Change to match your registry
-USERNAME="your-username"  # Change to your Docker Hub username
+USERNAME="fdsdark"  # Change to your Docker Hub username
 CONTAINER_NAME="portfolio-site"
 PORT="3000"
 
@@ -16,20 +16,20 @@ PORT="3000"
 TAG=${1:-latest}
 FULL_IMAGE_NAME="${REGISTRY}/${USERNAME}/${IMAGE_NAME}:${TAG}"
 
-echo "🍓 Deploying Portfolio Site on Raspberry Pi..."
+echo "Deploying Portfolio Site on Raspberry Pi..."
 echo "Image: ${FULL_IMAGE_NAME}"
 
 # Pull the latest image
-echo "📥 Pulling latest image..."
+echo "Pulling latest image..."
 docker pull ${FULL_IMAGE_NAME}
 
 # Stop and remove existing container if it exists
-echo "🛑 Stopping existing container..."
+echo "Stopping existing container..."
 docker stop ${CONTAINER_NAME} 2>/dev/null || echo "No existing container to stop"
 docker rm ${CONTAINER_NAME} 2>/dev/null || echo "No existing container to remove"
 
 # Run the new container
-echo "🚀 Starting new container..."
+echo "Starting new container..."
 docker run -d \
   --name ${CONTAINER_NAME} \
   -p ${PORT}:3000 \
@@ -37,7 +37,7 @@ docker run -d \
   ${FULL_IMAGE_NAME}
 
 # Show container status
-echo "✅ Deployment complete!"
+echo "Deployment complete!"
 echo ""
 echo "Container status:"
 docker ps | grep ${CONTAINER_NAME} || echo "Container not found"
