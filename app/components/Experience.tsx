@@ -18,13 +18,14 @@ const Experience: React.FC = () => {
                 {/* Image Section */}
                 {exp.image && (
                   <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-8 order-2' : 'md:pl-8 order-1'}`}>
-                    <div className="relative aspect-square w-48 mx-auto rounded-lg overflow-hidden">
+                    <div className="relative w-full max-w-sm mx-auto rounded-lg overflow-hidden">
                       <Image
                         src={exp.image}
                         alt={`${exp.organization} - ${exp.title}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 192px"
+                        width={400}
+                        height={300}
+                        className="object-contain w-full h-auto"
+                        sizes="(max-width: 768px) 100vw, 400px"
                       />
                     </div>
                   </div>

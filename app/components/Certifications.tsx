@@ -33,13 +33,14 @@ const Certifications: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex flex-col sm:flex-row items-center group"
               >
-                <div className="relative w-full sm:w-48 h-48">
+                <div className="w-full sm:w-48 h-48 flex items-center justify-center p-4">
                   <Image
                     src={cert.image}
                     alt={cert.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 192px"
-                    className="object-contain p-4 dark:brightness-90"
+                    width={180}
+                    height={120}
+                    className="object-contain max-w-full max-h-full dark:brightness-90"
+                    sizes="(max-width: 640px) 100vw, 180px"
                   />
                 </div>
                 <div className="p-6 flex-1">
