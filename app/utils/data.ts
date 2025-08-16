@@ -4,18 +4,32 @@ export const data = {
         image: "/about-image.jpg"
     },
     experience: [
+        // {
+        //     title: "Tier 1 Technician",
+        //     organization: "Milwaukee School of Engineering",
+        //     location: "Milwaukee, WI",
+        //     period: "September 2024 - March 2025",
+        //     description: [
+        //         "Provided front-line support to inbound requests and conducted initial troubleshooting on a wide range of technology issues",
+        //         "Provided remote support via telephone and ticketing software and in-person support across campus"
+        //     ],
+        //     type: "work",
+        //     image: "/experiences/msoe.png"
+        // },
         {
-            title: "Tier 1 Technician",
-            organization: "Milwaukee School of Engineering",
+            title: "Applied AI Intern",
+            organization: "Direct Supply",
             location: "Milwaukee, WI",
-            period: "September 2024 - Present",
+            period: "March 2025 - Present",
             description: [
-                "Provided front-line support to inbound requests and conducted initial troubleshooting on a wide range of technology issues",
-                "Provided remote support via telephone and ticketing software and in-person support across campus"
+                "Built internal tooling to streamline building services operations and improve team efficiency",
+                "Developed AI-integrated solutions to automate workflows and embed intelligence into daily processes",
+                "Created web applications for sales teams to enable easier access to analytics and decision-making tools",
+                "Collaborated with cross-functional teams to scale and maintain machine learning and data-driven tools"
             ],
             type: "work",
-            image: "/experiences/msoe.png"
-        },
+            image: "/experiences/directsupply.png"
+        }, 
         {
             title: "Freelance Software Developer",
             organization: "Self-Employed",
@@ -29,26 +43,14 @@ export const data = {
             image: "/experiences/freelance.png"
         },
         {
-            title: "Data Science Intern",
-            organization: "Direct Supply",
-            location: "Milwaukee, WI",
-            period: "March 2025 - Present",
-            description: [
-                "Developed data pipelines, statistical models, and dashboards to support healthcare technology initiatives and business insights",
-                "Collaborated with agile teams to build and maintain machine learning tools and cloud-based analytics solutions"
-            ],
-            type: "work",
-            image: "/experiences/directsupply.png"
-        },        
-        {
             title: "Computer Science, B.S.",
             organization: "Milwaukee School of Engineering",
             location: "Milwaukee, WI",
-            period: "2024 - 2028",
+            period: "September 2024 - May 2028",
             description: [
-                "GPA: 3.47",
-                "Relevant Coursework: Software Development,Data Structures, Design and Cloud Patterns, Calculus I & II, Discrete Mathematics",
-                "Member of the MSOE Artificial Intelligence Club"
+                "Relevant Coursework: Software Development, Data Structures, Design and Cloud Patterns, Calculus I & II, Discrete Mathematics",
+                "Member of the MSOE Artificial Intelligence Club",
+                "Competed in the MSOE AI Club's Innovation Labs, focusing on AI and machine learning projects"
             ],
             type: "education",
             image: "/experiences/msoe.png"
@@ -92,7 +94,6 @@ export const data = {
         }
     ],
     hero_text: [
-        "Developer", 2000, "",
         "Creator", 2000, "",
         "Designer", 2000, "",
         "Computer Scientist", 2000, "",
@@ -100,12 +101,19 @@ export const data = {
         "Data Scientist", 2000, "",
         "Software Engineer", 2000, "",
         "Full Stack Developer", 2000, "",
+        "Intern", 2000, "",
+        "Freelancer", 2000, ""
     ],
     certifications: [
         {
             title: "Brady MAIC Innovation Lab",
             image: "/certifications/brady-maic-innovation-lab.jpg",
-            link: "https://msoe-maic.com/library?nav=Articles&article=Fun%20with%20Liquids"
+            link: "https://msoe-maic.com/library?nav=Competitions&article=Brady-Fall-2024"
+        },
+        {
+            title: "Juno MAIC Innovation Lab",
+            image: "/certifications/juno-maic-innovation-lab.png",
+            link: "https://msoe-maic.com/library?nav=Competitions&article=Juno-Spring-2025"
         }
     ],
     footer: {
