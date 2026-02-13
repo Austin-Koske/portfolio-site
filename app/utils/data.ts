@@ -91,7 +91,64 @@ export const data = {
             "AI Pipeline"
             ],
           link: "https://msoe-maic.com/library?nav=Articles&article=Fun%20with%20Liquids"
-        }
+        },
+        {
+            title: "Milwaukee Domes AI Visitor Platform (Hacksgiving 2025)",
+            description: "Built an AI-powered mobile visitor engagement platform for the Milwaukee Domes Alliance during the Hacksgiving 2025 hackathon. Delivered a full-stack, production-ready system that enables gamified plant discovery, AI-assisted exploration, and staff management tools that the non-profit could not otherwise afford to build in-house.",
+            image: "/projects/hacksgiving-2025.jpg",
+            timeline: "November 2025",
+            technologies: [
+              "React Native",
+              "Expo",
+              "FastAPI",
+              "OpenAI API",
+              "Supabase (PostgreSQL)",
+              "Auth0",
+              "Stripe",
+              "Docker",
+              "QR Code Systems",
+              "Full-Stack Development"
+            ],
+            link: "https://www.linkedin.com/feed/update/urn:li:activity:7398827591278903297/"
+          },
+        {
+            title: "Real-Time Manufacturing Defect Detection (Innovation Lab)",
+            description: "Collaborated with Xorbix Technologies to develop a real-time computer vision system for manufacturing defect detection. Designed a scalable ML pipeline using YOLO-based models, distributed inference with Ray, and live video streaming to deliver sub-second defect classification and analytics across production lines.",
+            image: "/projects/xorbix.jpg",
+            timeline: "October 2025 - December 2025",
+            technologies: [
+                "Computer Vision",
+                "YOLO",
+                "Ray",
+                "Databricks",
+                "LiveKit",
+                "Distributed Systems",
+                "Real-Time Inference",
+                "ML Pipelines",
+                "Operational Analytics"
+            ],
+            link: "https://msoe-maic.com/library?nav=Competitions&article=Xorbix-Fall-2025"
+        },
+        {
+            title: "BenMed – Medical Report Simplification (Hack-4-Health)",
+            description: "Collaborated with the Medical College of Wisconsin to build BenMed, an AI-powered medical report simplification platform during a 3-day hackathon. Designed a full-stack NLP system that transforms complex clinical documents into plain-language summaries while preserving clinical accuracy through multi-stage validation, semantic similarity checks, and citation-backed grounding from peer-reviewed sources.",
+            image: "/projects/benmed.png",
+            timeline: "January 2026",
+            technologies: [
+              "Medical NLP",
+              "FastAPI",
+              "React",
+              "TypeScript",
+              "UMLS",
+              "OpenSearch",
+              "LLM Validation",
+              "Bio-ClinicalBERT",
+              "Information Retrieval",
+              "Distributed Processing",
+              "Healthcare AI"
+            ],
+            link: "https://msoe-maic.com"
+        }                
     ],
     hero_text: [
         "Creator", 2000, "",
