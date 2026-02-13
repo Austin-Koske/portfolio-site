@@ -7,7 +7,7 @@ const Projects: React.FC = () => {
     <section id="projects" className="py-20">
       <div className="max-w-screen-xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center mb-12">My Projects</h2>
-        <div className={`grid grid-cols-1 sm:grid-cols-2 gap-8 ${data.projects.length <= 2 ? 'max-w-4xl mx-auto' : 'lg:grid-cols-3'}`}>
+        <div className={`grid grid-cols-1 sm:grid-cols-2 gap-8 ${data.projects.length <= 2 ? 'max-w-4xl mx-auto' : 'lg:grid-cols-2'}`}>
           {data.projects.map((project, index) => (
             <div 
               key={index} 
