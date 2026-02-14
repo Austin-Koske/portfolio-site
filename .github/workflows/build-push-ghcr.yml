@@ -1,4 +1,4 @@
-name: Build, Push, Deploy (with Rollback)
+name: Build, Push, Deploy + Rollback
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Choose what to run"
+        description: "What do you want to do?"
         required: true
         default: "rollback"
         type: choice
@@ -18,13 +18,11 @@ permissions:
   packages: write
 
 env:
-  # Must match /opt/apps/<app-name> on apps-1
   APP_NAME: portfolio-site
 
 jobs:
   build_and_push:
-    # Skip build/push when doing rollback
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.action == 'rollback') }}
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -62,13 +60,12 @@ jobs:
           cache-to: type=gha,mode=max
 
   deploy:
-    needs: build_and_push
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.action == 'rollback') }}
+    if: ${{ github.event_name == 'push' }}
     runs-on: [self-hosted, linux, x64, homelab]
+    needs: build_and_push
 
     steps:
       - name: Deploy commit SHA to apps-1
-        shell: bash
         run: |
           set -euo pipefail
           ssh apps-1 "/opt/scripts/deploy-app.sh '${APP_NAME}' '${{ github.sha }}'"
@@ -78,8 +75,7 @@ jobs:
     runs-on: [self-hosted, linux, x64, homelab]
 
     steps:
-      - name: Rollback to previous deployed tag on apps-1
-        shell: bash
+      - name: Rollback to previous deployed version on apps-1
         run: |
           set -euo pipefail
           ssh apps-1 "/opt/scripts/rollback-app.sh '${APP_NAME}'"
