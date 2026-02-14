@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
@@ -47,3 +47,19 @@ jobs:
             ${{ steps.vars.outputs.image }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy_manual:
+    runs-on: [self-hosted, linux, x64, homelab]
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - name: Deploy to apps-1 over Tailscale
+        run: |
+          set -euo pipefail
+
+          ssh apps-1 "
+            cd /opt/apps/portfolio-site &&
+            docker compose pull &&
+            docker compose up -d &&
+            docker image prune -f
+          "
