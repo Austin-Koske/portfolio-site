@@ -1,17 +1,31 @@
-name: Build & Push (GHCR)
+name: Build, Push, Deploy (with Rollback)
 
 on:
   push:
     branches: ["main"]
   workflow_dispatch:
+    inputs:
+      action:
+        description: "Choose what to run"
+        required: true
+        default: "rollback"
+        type: choice
+        options:
+          - rollback
 
 permissions:
   contents: read
   packages: write
 
+env:
+  # Must match /opt/apps/<app-name> on apps-1
+  APP_NAME: portfolio-site
+
 jobs:
-  build-and-push:
-    runs-on: self-hosted
+  build_and_push:
+    # Skip build/push when doing rollback
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.action == 'rollback') }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -21,8 +35,7 @@ jobs:
         id: vars
         shell: bash
         run: |
-          REPO="${{ github.repository }}"              # e.g. Austin-Koske/portfolio-site
-          REPO_LC="$(echo "$REPO" | tr '[:upper:]' '[:lower:]')"
+          REPO_LC="$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')"
           IMAGE="ghcr.io/$REPO_LC"
           echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
           echo "Using image: $IMAGE"
@@ -48,18 +61,25 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  deploy_manual:
+  deploy:
+    needs: build_and_push
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.action == 'rollback') }}
     runs-on: [self-hosted, linux, x64, homelab]
-    if: ${{ github.event_name == 'workflow_dispatch' }}
 
     steps:
-      - name: Deploy to apps-1 over Tailscale
+      - name: Deploy commit SHA to apps-1
+        shell: bash
         run: |
           set -euo pipefail
+          ssh apps-1 "/opt/scripts/deploy-app.sh '${APP_NAME}' '${{ github.sha }}'"
 
-          ssh apps-1 "
-            cd /opt/apps/portfolio-site &&
-            docker compose pull &&
-            docker compose up -d &&
-            docker image prune -f
-          "
+  rollback:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.action == 'rollback' }}
+    runs-on: [self-hosted, linux, x64, homelab]
+
+    steps:
+      - name: Rollback to previous deployed tag on apps-1
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh apps-1 "/opt/scripts/rollback-app.sh '${APP_NAME}'"
