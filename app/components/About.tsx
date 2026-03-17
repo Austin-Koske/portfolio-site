@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { data } from "@/app/utils/data";
 
-const skills = ["Python", "JavaScript", "TypeScript", "React", "Node.js", "Lua", "Data Science", "Artificial Intelligence", "Computer Vision", "Natural Language Processing"];
+const skills = ["Python", "SQL", "PostgreSQL", "TypeScript", "JavaScript", "Distributed Systems", "Data Pipelines", "FastAPI", "Ray", "Docker"];
 
 const About: React.FC = () => {
   return (

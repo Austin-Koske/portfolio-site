@@ -6,45 +6,88 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-20">
       <div className="max-w-screen-xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center mb-12">My Projects</h2>
-        <div className={`grid grid-cols-1 sm:grid-cols-2 gap-8 ${data.projects.length <= 2 ? 'max-w-4xl mx-auto' : 'lg:grid-cols-2'}`}>
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white text-center mb-12">Projects</h2>
+        <div className="space-y-10">
           {data.projects.map((project, index) => (
-            <div 
-              key={index} 
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 flex flex-col h-full"
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden"
             >
-              <div className="relative h-48 sm:h-56 lg:h-64">
+              {/* Banner with title overlay */}
+              <div className="relative h-72 sm:h-80 lg:h-96">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 1280px"
+                  className="object-cover object-center"
                 />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{project.title}</h3>
-                <h4 className="text-gray-600 dark:text-gray-300 mb-4">{project.timeline}</h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-8">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-sm"
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between gap-4">
+                  <div className="min-w-0">
+                    <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                    <p className="text-gray-300 text-sm mt-1">{project.tagline}</p>
+                  </div>
+                  <div className="flex items-center gap-4 shrink-0">
+                    <span className="text-gray-400 text-sm hidden sm:block">{project.timeline}</span>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded-lg transition-colors whitespace-nowrap"
                     >
-                      {tech}
-                    </span>
-                  ))}
+                      View Project →
+                    </a>
+                  </div>
                 </div>
-                <div className="mt-auto">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block w-full text-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-                  >
-                    View Project
-                  </a>
+              </div>
+
+              {/* Four-section grid */}
+              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <div>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-primary-600 dark:text-primary-400 mb-2">
+                    Problem
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                    {project.sections.problem}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-primary-600 dark:text-primary-400 mb-2">
+                    System Design
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                    {project.sections.systemDesign}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-primary-600 dark:text-primary-400 mb-2">
+                    Challenges & Tradeoffs
+                  </h4>
+                  <ul className="space-y-2">
+                    {project.sections.challenges.map((challenge, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <span className="text-primary-500 dark:text-primary-400 font-bold mt-0.5 shrink-0">→</span>
+                        <span>{challenge}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-primary-600 dark:text-primary-400 mb-2">
+                    Impact
+                  </h4>
+                  <ul className="space-y-2">
+                    {project.sections.impact.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <span className="text-primary-500 dark:text-primary-400 font-bold mt-0.5 shrink-0">→</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -55,4 +98,4 @@ const Projects: React.FC = () => {
   );
 };
 
-export default Projects; 
+export default Projects;

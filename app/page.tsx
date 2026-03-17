@@ -4,6 +4,7 @@ import NavigationBar from "./components/NavigationBar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
+import OtherProjects from "./components/OtherProjects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Experience from "./components/Experience";
@@ -15,8 +16,9 @@ export default function Home() {
       <NavigationBar />
       <Hero />
       <About />
-      <Experience />
       <Projects />
+      <OtherProjects />
+      <Experience />
       <Certifications />
       <Contact />
       <Footer />
