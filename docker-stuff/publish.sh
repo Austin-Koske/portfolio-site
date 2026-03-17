@@ -16,7 +16,7 @@ TAG="${1:-latest}"
 if [[ -f "$REPO_ROOT/.env.local" ]]; then
   set -a
   # shellcheck disable=SC1091
-  source "$REPO_ROOT/.env.local"
+  source <(sed 's/\r//' "$REPO_ROOT/.env.local")
   set +a
 else
   echo "Error: .env.local not found at $REPO_ROOT/.env.local" >&2
