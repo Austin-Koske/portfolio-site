@@ -46,21 +46,21 @@ export const data = {
     projects: [
         {
             title: "Arcturus Services",
-            tagline: "Real-time market search over 4M+ Growtopia marketplace listings",
+            tagline: "Real-time market search over 16M+ Growtopia marketplace listings",
             image: "/projects/arcturus-services.jpg",
             timeline: "October 2023 – September 2025",
             link: "https://arcturusgt.xyz",
             sections: {
-                problem: "Growtopia is a sandbox MMO with a fully player-driven economy spanning 270,000+ active worlds and millions of daily marketplace listings. No centralized price discovery existed. Players relied on manually searching unstructured Discord channels filled with abbreviated, typo-ridden listing messages—high noise, no signal.",
-                systemDesign: "Discord bot (Pycord) receives user queries and routes to an NLP classification pipeline that parses raw listing messages to extract item names, prices, and quantities. Extracted data is written to PostgreSQL (4M+ records), indexed for sub-second lookup. Ingestion runs continuously, consuming marketplace channels across the network. Query serving is decoupled from ingestion—reads hit indexed tables independently of ongoing writes.",
+                problem: "Growtopia is a sandbox MMO with a fully player-driven economy spanning millions of active worlds and daily marketplace listings. No centralized price discovery existed. Players relied on manually searching unstructured Discord channels filled with abbreviated, typo-ridden listing messages—high noise, no signal.",
+                systemDesign: "Discord bot (Pycord) receives user queries and routes to an NLP classification pipeline that parses raw listing messages to extract item names, prices, and quantities. Extracted data is written to PostgreSQL (16M+ records), indexed for sub-second lookup. Ingestion runs continuously, consuming marketplace channels across the network. Query serving is decoupled from ingestion—reads hit indexed tables independently of ongoing writes.",
                 challenges: [
                     "NLP accuracy on noisy text: game-specific abbreviations, misspellings, and multi-item bundles required domain-adapted training data and multiple iteration cycles to reach usable precision",
-                    "Query performance at scale: sub-second latency across 4M+ records required indexing strategy tuning, query plan analysis, and denormalization tradeoffs to avoid full table scans",
+                    "Query performance at scale: sub-second latency across 16M+ records required indexing strategy tuning, query plan analysis, and denormalization tradeoffs to avoid full table scans",
                     "Write/read contention during high-volume ingestion: batching writes and tuning PostgreSQL connection pooling prevented ingestion from degrading live query performance",
                     "Staleness management: marketplace listings expire and change; timestamp-based eviction logic and staleness thresholds prevent stale price data from reaching users"
                 ],
                 impact: [
-                    "4M+ marketplace listings indexed and queryable in real time",
+                    "16M+ marketplace listings indexed and queryable in real time",
                     "270,000+ player worlds covered by continuous data ingestion",
                     "Sub-second search response times across millions of records",
                     "Active daily user base querying market prices and item availability"
@@ -115,7 +115,7 @@ export const data = {
         },
         {
             title: "BenMed",
-            description: "Built a medical report simplification platform with the Medical College of Wisconsin during Hack-4-Health 2026. Full-stack NLP pipeline (React + FastAPI) with 7-stage validation architecture, UMLS Metathesaurus grounding (3.4M+ concepts), citation-backed simplification via Exa AI, and Bio-ClinicalBERT semantic similarity verification.",
+            description: "Built a medical report simplification platform with the Medical College of Wisconsin during Hack-4-Health 2026. Full-stack NLP pipeline (React + FastAPI) with 7-stage validation architecture, UMLS Metathesaurus grounding (3.16M+ concepts), citation-backed simplification via Exa AI, and Bio-ClinicalBERT semantic similarity verification.",
             timeline: "January 2026",
             link: "https://msoe-maic.com",
             tags: ["FastAPI", "React", "OpenSearch", "UMLS", "Bio-ClinicalBERT"]
